@@ -1,0 +1,12 @@
+{% load menu_tags %}
+
+{% for menu_item in menu_items %}
+    <a href="{{ menu_item.url }}" {% if request.path == menu_item.url %}class="active"{% endif %}>{{ menu_item.name }}</a>
+    {% if menu_item.child_set.all %}
+        <ul>
+            {% for child in menu_item.child_set.all %}
+                <li><a href="{{ child.url }}" {% if request.path == child.url %}class="active"{% endif %}>{{ child.name }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endfor %}
