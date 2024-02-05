@@ -1,12 +1,14 @@
-{% load menu_tags %}
+{% load tree_menu_tags %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Меню</title>
 
-{% for menu_item in menu_items %}
-    <a href="{{ menu_item.url }}" {% if request.path == menu_item.url %}class="active"{% endif %}>{{ menu_item.name }}</a>
-    {% if menu_item.child_set.all %}
-        <ul>
-            {% for child in menu_item.child_set.all %}
-                <li><a href="{{ child.url }}" {% if request.path == child.url %}class="active"{% endif %}>{{ child.name }}</a></li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-{% endfor %}
+</head>
+<body>
+{# может быть любое название главного меню #}
+{% draw_menu 'tree_menu' %}
+
+</body>
+</html>
